@@ -1,6 +1,7 @@
 package com.example.recyclerview;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,6 +60,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 Log.d(TAG, "onClick: clicked on:" + mImageNames.get(position));
 
                 Toast.makeText(mContext, mImageNames.get(position), Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(mContext, GalleryActivity.class);
+                intent.putExtra("image_url", mImages.get(position));
+                intent.putExtra("image_name", mImageNames.get(position));
+                mContext.startActivity(intent);//in una classe Adapter scrivere solo startActivity non funziona, perchè non riconosce il Context
             }
         });
 
